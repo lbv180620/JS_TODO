@@ -1,16 +1,54 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>TODO(JS)</title>
+    <meta charset="UTF-8" />
+  </head>
 
-<head>
-	<title>Parcel Sandbox</title>
-	<meta charset="UTF-8" />
-</head>
+  <body>
+    <div class="input-area">
+      <input placeholder="TODOを入力" />
+      <button>追加</button>
+    </div>
+    <div class="incompleted-area">
+      <p class="title">未完了のTODO</p>
+      <ul>
+        <li>
+          <!-- 後でCSSで横並びにするので、divタグが囲む -->
+          <div class="list-row">
+            <p>TODOです</p>
+            <button>完了</button>
+            <button>削除</button>
+          </div>
+        </li>
+        <li>
+          <div class="list-row">
+            <p>TODOです</p>
+            <button>完了</button>
+            <button>削除</button>
+          </div>
+        </li>
+        <li>
+          <div class="list-row">
+            <p>TODOです</p>
+            <button>完了</button>
+            <button>削除</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="completed-area">
+      <p class="title">完了したTODO</p>
+      <ul>
+        <li>
+          <div class="list-row">
+            <p>TODOでした</p>
+            <button>戻す</button>
+          </div>
+        </li>
+      </ul>
+    </div>
 
-<body>
-	<div id="app"></div>
-
-	<script src="src/index.js">
-	</script>
-</body>
-
+    <script src="src/index.js"></script>
+  </body>
 </html>
