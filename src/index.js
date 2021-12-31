@@ -54,7 +54,35 @@ const onClickAdd = () => {
   completeBtn.addEventListener(
     "click",
     () => {
-      alert("完了");
+      // alert("完了");
+      // 機能3：完了ボタンを押す
+      // 完了ボタンを押した行のテキストで、完了areaに新しくDOMを生成し、戻すボタンを生成する。完了したら元の行は削除する。
+      // ⒈ 完了ボタンが押されたら、未完了エリアからタスクを削除する
+      const deleteTarget = completeBtn.closest("li");
+      deleteFromIncompletedList(deleteTarget);
+      // 2. 完了リストに追加する要素
+      const addTarget = completeBtn.closest("li");
+      // 3. TODO内容テキストを取得
+      const text = addTarget.querySelector("p").innerText;
+      // 4. div以下を初期化
+      addTarget.querySelector("div").textContent = null;
+      // console.log(addTarget);
+      //<li>
+      // <div class="list-row"></div>
+      //</li>
+
+      // 5. DOMの生成
+      const p = document.createElement("p");
+      p.innerText = text;
+
+      const btn = document.createElement("button");
+      btn.innerText = "戻す";
+
+      addTarget.querySelector("div").appendChild(p);
+      addTarget.querySelector("div").appendChild(btn);
+
+      // 完了リストに追加
+      document.querySelector("#completed-list").appendChild(addTarget);
     },
     false
   );
@@ -67,7 +95,7 @@ const onClickAdd = () => {
     "click",
     () => {
       // alert("削除");
-      // 機能3：削除ボタン押す → 祖先要素のliタグがincompleted-listから削除される
+      // 機能2：削除ボタン押す → 祖先要素のliタグがincompleted-listから削除される
       const deleteTarget = deleteBtn.closest("li");
       // console.log(deleteTarget);
       // <li>
@@ -78,7 +106,7 @@ const onClickAdd = () => {
       //    </div>
       // </li>
       // incompleted-listから削除する
-      document.querySelector("#incompleted-list").removeChild(deleteTarget);
+      deleteFromIncompletedList(deleteTarget);
     },
     false
   );
@@ -110,7 +138,10 @@ const onClickAdd = () => {
   document.querySelector("#incompleted-list").appendChild(li);
 };
 
-// 機能2：完了ボタンを押す→
+// 未完了リストから指定の要素を削除
+const deleteFromIncompletedList = (target) => {
+  document.querySelector("#incompleted-list").removeChild(target);
+};
 
 // ①add-btn要素に対してclickイベントが起こるようにする
 // 追加ボタンと処理を紐づける目印がhtml側に必要
