@@ -66,7 +66,19 @@ const onClickAdd = () => {
   deleteBtn.addEventListener(
     "click",
     () => {
-      alert("削除");
+      // alert("削除");
+      // 機能3：削除ボタン押す → 祖先要素のliタグがincompleted-listから削除される
+      const deleteTarget = deleteBtn.closest("li");
+      // console.log(deleteTarget);
+      // <li>
+      //   <div class="list-row">
+      //      <p>aaaaaaaaa</p>
+      //      <button>完了</button>
+      //      <button>削除</button>
+      //    </div>
+      // </li>
+      // incompleted-listから削除する
+      document.querySelector("#incompleted-list").removeChild(deleteTarget);
     },
     false
   );
@@ -99,8 +111,6 @@ const onClickAdd = () => {
 };
 
 // 機能2：完了ボタンを押す→
-
-// 機能3：削除ボタンを押す→未完了エリアにタスクが追加される
 
 // ①add-btn要素に対してclickイベントが起こるようにする
 // 追加ボタンと処理を紐づける目印がhtml側に必要
