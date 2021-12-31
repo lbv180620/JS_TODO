@@ -7,12 +7,14 @@
 
   <body>
     <div class="input-area">
-      <input placeholder="TODOを入力" />
-      <button>追加</button>
+      <input id="add-text" placeholder="TODOを入力" />
+      <!-- 追加ボタンが押された時にアクションが起こるように目印を付ける -->
+      <button id="add-btn">追加</button>
     </div>
     <div class="incompleted-area">
       <p class="title">未完了のTODO</p>
-      <ul>
+      <!-- 作成したDOMをここに挿入するために目印を付ける -->
+      <ul id="incompleted-list">
         <li>
           <!-- 後でCSSで横並びにするので、divタグが囲む -->
           <div class="list-row">
