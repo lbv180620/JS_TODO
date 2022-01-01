@@ -27,6 +27,16 @@ const onClickAdd = () => {
   // alertで出力確認
   alert(inputText);
 
+  addtoIncompletedList(inputText);
+};
+
+// 未完了リストから指定の要素を削除
+const deleteFromIncompletedList = (target) => {
+  document.querySelector("#incompleted-list").removeChild(target);
+};
+
+// 未完了リストに追加する関数
+const addtoIncompletedList = (text) => {
   // ⑤inputTextを元に、li>list-rowのDOM作成していく
 
   // ⑴liタグ生成
@@ -44,7 +54,7 @@ const onClickAdd = () => {
 
   // ⑷pタグを生成し、その中にinputTextを挿入する
   const p = document.createElement("p");
-  p.innerText = inputText;
+  p.innerText = text;
   // console.log(p); // <p>aaaaa</p>
 
   // (11)完了ボタンと削除ボタンに対するイベントは一つずつidを振る訳ではないので、関数内で設定する
@@ -75,11 +85,27 @@ const onClickAdd = () => {
       const p = document.createElement("p");
       p.innerText = text;
 
-      const btn = document.createElement("button");
-      btn.innerText = "戻す";
+      const backBtn = document.createElement("button");
+      backBtn.innerText = "戻す";
+      backBtn.addEventListener(
+        "click",
+        () => {
+          // alert("戻す");
+          // 戻すボタンを押すと、完了リストからタスクが削除される
+          const deleteTarget = backBtn.closest("li");
+          document.querySelector("#completed-list").removeChild(deleteTarget);
+
+          // テキストの取得
+          const text = backBtn.previousElementSibling.innerText;
+          console.log(text);
+          // 再起的に処理
+          addtoIncompletedList(text);
+        },
+        false
+      );
 
       addTarget.querySelector("div").appendChild(p);
-      addTarget.querySelector("div").appendChild(btn);
+      addTarget.querySelector("div").appendChild(backBtn);
 
       // 完了リストに追加
       document.querySelector("#completed-list").appendChild(addTarget);
@@ -136,11 +162,6 @@ const onClickAdd = () => {
   //⑺li>list-rowを未完了のulタグに挿入する
   // そのためにulタグに目印を付ける
   document.querySelector("#incompleted-list").appendChild(li);
-};
-
-// 未完了リストから指定の要素を削除
-const deleteFromIncompletedList = (target) => {
-  document.querySelector("#incompleted-list").removeChild(target);
 };
 
 // ①add-btn要素に対してclickイベントが起こるようにする
