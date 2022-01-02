@@ -164,3 +164,10 @@ function addToIncompletedList(text) {
 function deleteFromIncompletedList(target) {
   document.querySelector("#incompleted-list").removeChild(target);
 }
+
+// -----------------------
+
+/**
+ * ・DOM生成するのでidがないボタン -> ボタンの中にボタンの処理 再帰的な処理にもなる
+ * ・親・祖先要素はclosest、子・子孫要素はquerySelectorを使えば、わかりやすい
+ */
